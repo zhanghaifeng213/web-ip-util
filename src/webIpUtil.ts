@@ -30,7 +30,7 @@ export function getIpInfo(config: ElementType[]) {
   })
 }
 
-export function getDefaultConfig(config: ElementType[]): ElementType[] {
+function mergeDefaultConfig(config: ElementType[]): ElementType[] {
   return defaultConfig.map((item: ElementType) => {
     const findProps = config.find(it => it.id === item.id)
     const value: ElementType = {
@@ -48,6 +48,6 @@ export function getDefaultConfig(config: ElementType[]): ElementType[] {
 }
 
 export function getDefaultIpInfo(defaultConfig: ElementType[]) {
-  const config = getDefaultConfig(defaultConfig)
+  const config = mergeDefaultConfig(defaultConfig)
   return getIpInfo(config)
 }

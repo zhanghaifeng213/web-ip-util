@@ -20,7 +20,6 @@ export type ResMapping = {
   ip: string
   [key: string]: string
 }
-export type SuccessField = string
 
 export interface ElementType {
   id?: string
@@ -29,14 +28,4 @@ export interface ElementType {
   data?: Data
   jsonpCallback?: JsonpCallback
   resMapping: ResMapping
-  successField?: SuccessField
 }
-
-// export interface DefaultConfig extends Partial<Omit<ElementType, 'type'>> {
-//   type: any
-//   id?: string
-// }
-
-// export interface DefaultConfig extends ElementType {
-//   id?: string
-// }
