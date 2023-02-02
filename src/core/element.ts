@@ -1,5 +1,5 @@
-import { JsonpCallbackDefault, JsonpType } from './const'
-import { JsonpCallback, Data, Type, Url } from './types'
+import { JsonpCallbackDefault, JsonpType } from '../const'
+import { JsonpCallback, Data, Type, Url } from '../types'
 
 export default class WebIpUtil {
   type: Type

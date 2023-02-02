@@ -22,10 +22,10 @@ export type ResMapping = {
 }
 
 export interface ElementType {
-  id?: string
-  type?: Type
   url: Url
-  data?: Data
   jsonpCallback?: JsonpCallback
-  resMapping: ResMapping
+  resMapping?: ResMapping
+  id?: string
+  data?: Data
+  type?: Type
 }

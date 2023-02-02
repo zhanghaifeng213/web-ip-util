@@ -1,8 +1,8 @@
-import { JsonpType } from './const'
+import { JsonpType, ResMappingDefault } from './const'
 import { defaultConfig } from './default'
 import { ElementType, ObjectType, ResMapping } from './types'
-import { merge } from 'lodash-es'
-import { promiseFactory } from './promiseFactory'
+import { promiseFactory } from './core/promiseFactory'
+import { deepMerge } from './utils/deepMerge'
 
 export function getElementPromise(element: ElementType, index: number) {
   return promiseFactory(element, index)
@@ -13,7 +13,7 @@ export function getIpInfo(config: ElementType[]) {
     return getElementPromise(element, index)
   })
   return Promise.any(promiseArr).then((res: any) => {
-    const resMapping: ResMapping = config[res.index].resMapping
+    const resMapping: ResMapping = config?.[res.index]?.resMapping || ResMappingDefault
     const result: ObjectType = {
       extra: { ...res }
     }
@@ -33,17 +33,10 @@ export function getIpInfo(config: ElementType[]) {
 function mergeDefaultConfig(config: ElementType[]): ElementType[] {
   return defaultConfig.map((item: ElementType) => {
     const findProps = config.find(it => it.id === item.id)
-    const value: ElementType = {
-      type: item.type || JsonpType,
-      url: item.url,
-      data: item.data,
-      jsonpCallback: item.jsonpCallback,
-      resMapping: item.resMapping
-    }
     if (findProps) {
-      return merge(value, findProps)
+      return deepMerge(item, findProps)
     }
-    return value
+    return item
   })
 }
 

@@ -1,4 +1,4 @@
-import { JsonpCallbackDefault } from '../const'
+import { JsonpCallbackDefault, ResMappingDefault } from '../const'
 import { JsonpCallback, Data, Url, ResMapping } from '../types'
 
 /**
@@ -14,14 +14,14 @@ export const jsonp = function({
   url,
   data = {},
   jsonpCallback = JsonpCallbackDefault,
-  resMapping
+  resMapping = ResMappingDefault
 }: {
   id?: string
-  index: number
+  index?: number
   url: Url
   data?: Data
   jsonpCallback?: JsonpCallback
-  resMapping: ResMapping
+  resMapping?: ResMapping
 }) {
   return new Promise(function(resolve, reject) {
     //定义一个处理Jsonp返回数据的回调函数 默认callback
@@ -30,9 +30,12 @@ export const jsonp = function({
       const ip = resMapping.ip.split('.').reduce((pre, cur) => {
         return pre?.[cur]
       }, res)
-      let obj = { ...res, index }
+      let obj = res
       if (id) {
         obj.id = id
+      }
+      if (index !== undefined) {
+        obj.index = index
       }
       if (ip) {
         resolve(obj)

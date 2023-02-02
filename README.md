@@ -115,22 +115,23 @@ getIpInfo({
 
 ### `ElementTYpe`
 
-| 参数          | 说明                   |    类型    | 必须参数 |  默认值  |
-| ------------- | ---------------------- | :--------: | :------: | :------: |
-| url           | 服务地址               |   string   |    是    |    -     |
-| resMapping    | 服务返回结果映射       | ResMapping |    是    |    -     |
-| jsonpCallback | jsonp 回调的函数名     |   string   |    是    | callback |
-| id            | 配置多个服务的标识区分 |   string   |    否    |    -     |
-| data          | 拼接 url 的参数配置    |   object   |    否    |   null   |
+| 参数          | 说明                                |    类型    | 必须参数 |             可选值             |    默认值    |
+| ------------- | ----------------------------------- | :--------: | :------: | :----------------------------: | :----------: |
+| url           | 服务地址                            |   string   |    是    |               -                |      -       |
+| jsonpCallback | jsonp 回调的函数名                  |   string   |    否    |               -                |   callback   |
+| resMapping    | 服务返回结果映射                    | ResMapping |    否    |               -                | { ip: 'ip' } |
+| id            | 配置多个服务的标识区分              |   string   |    否    | qq / pconline / ip-api / ip-sb |      -       |
+| data          | 拼接 url 的参数配置                 |   object   |    否    |               -                |     null     |
+| type          | 配置的类型（目前只支持 jsonp 方式） |   string   |    否    |          JSONP / AJAX          |    JSONP     |
 
 ### `ResMapping`
 
 > 返回结果多层级时，中间用 `.` 分隔
 
-| 参数     | 说明                   |  类型  | 必须参数 | 默认值 |
-| -------- | ---------------------- | :----: | :------: | :----: |
-| ip       | ip 字段映射            | string |    是    |   -    |
-| province | 省名称字段映射         | string |    否    |   -    |
-| city     | 城市名称字段映射       | string |    否    |   -    |
-| district | 区名称字段映射         | string |    否    |   -    |
-| 其他     | 自定义返回结果字段映射 | string |    否    |   -    |
+| 参数     | 说明                   |  类型  | 必须参数 | 可选值 | 默认值 |
+| -------- | ---------------------- | :----: | :------: | :----: | :----: |
+| ip       | ip 字段映射            | string |    是    |   -    |   -    |
+| province | 省名称字段映射         | string |    否    |   -    |   -    |
+| city     | 城市名称字段映射       | string |    否    |   -    |   -    |
+| district | 区名称字段映射         | string |    否    |   -    |   -    |
+| 其他     | 自定义返回结果字段映射 | string |    否    |   -    |   -    |
